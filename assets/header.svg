@@ -1,0 +1,68 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260" role="img" aria-label="Animated profile header">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0714"/>
+      <stop offset="1" stop-color="#120a2a"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff2bd6"/>
+      <stop offset=".5" stop-color="#7c4dff"/>
+      <stop offset="1" stop-color="#00e5ff"/>
+    </linearGradient>
+    <linearGradient id="glassEdge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".35"/>
+      <stop offset=".5" stop-color="#ffffff" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".22"/>
+    </linearGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="46"/></filter>
+    <filter id="glow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="round"><rect width="900" height="260" rx="20"/></clipPath>
+  </defs>
+
+  <style>
+    .orb1{animation:o1 9s ease-in-out infinite alternate}
+    .orb2{animation:o2 11s ease-in-out infinite alternate}
+    .orb3{animation:o3 13s ease-in-out infinite alternate}
+    @keyframes o1{to{transform:translate(140px,40px)}}
+    @keyframes o2{to{transform:translate(-160px,-30px)}}
+    @keyframes o3{to{transform:translate(90px,-50px)}}
+    .title{font:700 46px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:-.5px}
+    .sub{font:500 19px 'Courier New',monospace;fill:#00e5ff;opacity:0}
+    .s1{animation:cyc 12s infinite}
+    .s2{animation:cyc 12s infinite 4s}
+    .s3{animation:cyc 12s infinite 8s}
+    @keyframes cyc{0%{opacity:0;transform:translateY(8px)}5%,28%{opacity:1;transform:translateY(0)}33%,100%{opacity:0;transform:translateY(-8px)}}
+    .line{stroke-dasharray:240;animation:draw 3.5s ease-in-out infinite alternate}
+    @keyframes draw{from{stroke-dashoffset:240}to{stroke-dashoffset:0}}
+    .tag{font:600 12px 'Courier New',monospace;fill:#d9ccff;letter-spacing:1.5px}
+    .dot{animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{50%{opacity:.25}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important}.s1{opacity:1}}
+  </style>
+
+  <g clip-path="url(#round)">
+    <rect width="900" height="260" fill="url(#bg)"/>
+    <g filter="url(#blur)">
+      <circle class="orb1" cx="110" cy="70" r="90" fill="#ff2bd6" opacity=".75"/>
+      <circle class="orb2" cx="760" cy="190" r="100" fill="#00e5ff" opacity=".6"/>
+      <circle class="orb3" cx="420" cy="260" r="80" fill="#7c4dff" opacity=".7"/>
+    </g>
+
+    <!-- glass panel -->
+    <rect x="36" y="32" width="828" height="196" rx="18" fill="#ffffff" fill-opacity=".07"/>
+    <rect x="36.5" y="32.5" width="827" height="195" rx="17.5" fill="none" stroke="url(#glassEdge)"/>
+
+    <circle class="dot" cx="68" cy="62" r="4" fill="#00e5ff"/>
+    <text class="tag" x="82" y="66">BUILDING WITH AI</text>
+
+    <text class="title" x="64" y="130" fill="url(#neon)" filter="url(#glow)">Hi, I'm Tejas Amarnath</text>
+    <path class="line" d="M66 148 H306" stroke="url(#neon)" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+    <text class="sub s1" x="64" y="190">&gt; AI Engineer</text>
+    <text class="sub s2" x="64" y="190">&gt; Researcher</text>
+    <text class="sub s3" x="64" y="190">&gt; Curious Builder</text>
+  </g>
+</svg>
+

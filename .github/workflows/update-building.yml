@@ -1,0 +1,57 @@
+name: Update "currently building"
+
+on:
+  schedule:
+    - cron: "30 */6 * * *"   # every 6 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find the most recently pushed repo and patch the README
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, subprocess
+
+          owner = os.environ["OWNER"]
+          out = subprocess.run(
+              ["gh", "api", f"users/{owner}/repos?sort=pushed&per_page=15&type=owner"],
+              capture_output=True, text=True, check=True).stdout
+          repos = [r for r in json.loads(out)
+                   if not r["fork"] and not r["archived"] and r["name"].lower() != owner.lower()]
+          if not repos:
+              raise SystemExit("No suitable repo found")
+          r = repos[0]
+          desc = (r.get("description") or "").strip()
+          line = f"[**{r['name']}**]({r['html_url']})" + (f" - {desc}" if desc else "")
+          block = f"<!--BUILDING:START-->{line}<!--BUILDING:END-->"
+
+          for path in ("README.md", "README.glass.md"):
+              if not os.path.exists(path):
+                  continue
+              text = open(path, encoding="utf-8").read()
+              new = re.sub(r"<!--BUILDING:START-->.*?<!--BUILDING:END-->", lambda m: block, text, flags=re.S)
+              if new != text:
+                  open(path, "w", encoding="utf-8").write(new)
+          PY
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet; then
+            echo "No change"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -am "chore: update currently building"
+            git push
+          fi
