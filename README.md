@@ -18,7 +18,7 @@
 
 ## About me
 
-- **Currently building:** <!--BUILDING:START-->[**ML-**](https://github.com/Tejaszz-epsilon/ML-) - This is my jupyter notebook projects that I had done during my preparation in Andrew NG's ML course.<!--BUILDING:END-->
+- **Currently building:** <!--BUILDING:START-->[**Margin**](https://github.com/Tejaszz-epsilon/Margin) - A browser extension that reads your webpages for you!<!--BUILDING:END-->
 - **Learning:** Agentic AI, Machine Learning
 - **Ask me about:** AI!
 - **Reach me:** [LinkedIn](https://www.linkedin.com/in/tejas-amarnath-6b00bb2a7/)
