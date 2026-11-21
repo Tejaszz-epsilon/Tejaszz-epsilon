@@ -18,7 +18,7 @@
 
 ## About me
 
-- **Currently building:** <!--BUILDING:START-->[**Margin**](https://github.com/Tejaszz-epsilon/Margin) - A browser extension that reads your webpages for you!<!--BUILDING:END-->
+- **Currently building:** <!--BUILDING:START-->[**StegoVault**](https://github.com/Tejaszz-epsilon/StegoVault)<!--BUILDING:END-->
 - **Learning:** Agentic AI, Machine Learning
 - **Ask me about:** AI!
 - **Reach me:** [LinkedIn](https://www.linkedin.com/in/tejas-amarnath-6b00bb2a7/)
